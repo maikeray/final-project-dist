@@ -1,0 +1,9 @@
+<div class="text-center">
+    <h1 class="h4 text-gray-900 mb-4">Verify Email</h1>
+</div>
+<div *ngIf="emailVerified" class="text-center mt-4">
+    <p>Your email has been verified, you can now <a routerLink="/account/login">login</a>.</p>
+</div>
+<div *ngIf="!emailVerified" class="text-center mt-4">
+    <p>Verifying your email...</p>
+</div>

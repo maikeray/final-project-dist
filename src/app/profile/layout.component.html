@@ -1,0 +1,21 @@
+<div class="p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <nav class="nav flex-column">
+                            <a class="nav-link" routerLink="/profile" routerLinkActive="active" 
+                                [routerLinkActiveOptions]="{exact: true}">My Profile</a>
+                            <a class="nav-link" routerLink="/profile/update" 
+                                routerLinkActive="active">Update Profile</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
