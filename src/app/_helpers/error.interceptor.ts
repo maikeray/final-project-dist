@@ -10,14 +10,16 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private accountService: AccountService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            if ([401, 403].includes(err.status) && this.accountService.accountValue) {
-                this.accountService.logout();
-            }
+    return next.handle(request).pipe(catchError(err => {
+        const isRefreshTokenRequest = request.url.includes('refresh-token');
+        
+        if ([401, 403].includes(err.status) && this.accountService.accountValue && !isRefreshTokenRequest) {
+            this.accountService.logout();
+        }
 
-            const error = (err && err.error && err.error.message) || err.statusText;
-            console.error(err);
-            return throwError(() => error);
+        const error = (err && err.error && err.error.message) || err.statusText;
+        console.error(err);
+        return throwError(() => error);
         }))
     }
 }
